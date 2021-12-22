@@ -1,0 +1,7 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/venv": false
+  },
+  "python.formatting.provider": "autopep8"
+}
