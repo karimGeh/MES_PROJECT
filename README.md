@@ -20,7 +20,7 @@ python -m venv venv
 ./venv/Scripts/activate
 ```
 
-> Note: if you're on cmd wrap the command in double quotes or use backslashes instead of forward-slashes
+> Note: if you're on cmd wrap the previous command with double quotes or use backslashes instead of forward-slashes
 
 - install dependencies:
 

@@ -50,12 +50,13 @@ problem1 = FlowJobProblem(
     jobsMatrix,
     jobsDelayArray=jobsDelayArray,
     preparationMatrix=preparationMatrix,
-    type="preparation"
+    type="delay"
 )
 
 # CDS_solution = CDS(problem1)
 
 # print(CDS_solution.getSolution())
-solution = problem1.generateSolution([3, 2, 1, 0, 4])
-print(solution.getCMax())
+# solution = problem1.generateSolution([3, 2, 1, 0, 4])
+# print(solution)
 print(CDS(problem1).getSolution())
+print(CDS(problem1).getSolutionWithDelay())

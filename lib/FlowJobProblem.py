@@ -100,6 +100,19 @@ class FlowJobProblem:
     ):
         return self.preparationMatrix[machine][previous_job][job]
 
+    def getTotalTardiness(self, solution: FlowJobSolution.FlowJobSolution) -> int:
+        # print(solution)
+        return sum(
+            max(
+                0,
+                solution.getC(
+                    k,
+                    self.numberOfMachines - 1,
+                ) - d,
+            )
+            for k, d in enumerate(self.jobsDelayArray)
+        )
+
     def normalModel(self, jobIndex, machineIndex, sequence, CArray):
         if jobIndex == 0 and machineIndex == 0:
             return self.getTimeOfJobOnMachine(
@@ -113,13 +126,13 @@ class FlowJobProblem:
 
         if machineIndex == 0:
             return (
-                self.getC(sequence[jobIndex - 1], 0, sequence, CArray)[0]
+                self.getC(jobIndex - 1, 0, sequence, CArray)[0]
                 + self.getTimeOfJobOnMachine(sequence[jobIndex], machineIndex)
             )
 
         return (
             max(
-                self.getC(sequence[jobIndex - 1],
+                self.getC(jobIndex - 1,
                           machineIndex, sequence, CArray)[0],
                 self.getC(jobIndex, machineIndex - 1, sequence, CArray)[0],
             )
@@ -159,7 +172,9 @@ class FlowJobProblem:
                 self.getC(jobIndex, machineIndex - 1, sequence, CArray)[0],
                 self.getC(jobIndex - 1, machineIndex, sequence, CArray)[0]
                 + self.getPreparationTimeOfJob(
-                    sequence[jobIndex], sequence[jobIndex - 1], machineIndex
+                    sequence[jobIndex],
+                    sequence[jobIndex - 1],
+                    machineIndex
                 ),
             )
             + self.getTimeOfJobOnMachine(sequence[jobIndex], machineIndex)
@@ -168,7 +183,8 @@ class FlowJobProblem:
     def getC(self, jobIndex, machineIndex, sequence, CArray):
         for solution in self.solutions:
             if solution.sequence == sequence:
-                CArray = solution.CArray
+                COfJob = solution.CArray[machineIndex][sequence[jobIndex]]
+                return [COfJob, CArray]
 
         if CArray[machineIndex][sequence[jobIndex]] >= 0:
             COfJob = CArray[machineIndex][sequence[jobIndex]]
@@ -179,9 +195,18 @@ class FlowJobProblem:
             self.type == OBJECT_OF_AVAILABLE_TYPES["delay_and_preparation"]
         ):
             COfJob = self.preparationModel(
-                jobIndex, machineIndex, sequence, CArray)
+                jobIndex,
+                machineIndex,
+                sequence,
+                CArray
+            )
         else:
-            COfJob = self.normalModel(jobIndex, machineIndex, sequence, CArray)
+            COfJob = self.normalModel(
+                jobIndex,
+                machineIndex,
+                sequence,
+                CArray
+            )
 
         CArray[machineIndex][sequence[jobIndex]] = COfJob
 
@@ -200,15 +225,28 @@ class FlowJobProblem:
         return solution.getCMax()
 
     def generateSolution(self, sequence: list[int]) -> FlowJobSolution.FlowJobSolution:
+        for solution in self.solutions:
+            if solution.sequence == sequence:
+                return solution
+
         CArray = [
             [-1 for _ in range(self.numberOfJobs)]
             for _ in range(self.numberOfMachines)
         ]
 
-        _, CArray = self.getC(self.numberOfJobs - 1,
-                              self.numberOfMachines - 1, sequence, CArray)
+        _, CArray = self.getC(
+            self.numberOfJobs - 1,
+            self.numberOfMachines - 1,
+            sequence,
+            CArray
+        )
 
-        solution = FlowJobSolution.FlowJobSolution(self, sequence, CArray)
+        solution = FlowJobSolution.FlowJobSolution(
+            self,
+            sequence,
+            CArray
+        )
+
         self.solutions.append(solution)
 
         return solution

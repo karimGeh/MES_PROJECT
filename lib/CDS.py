@@ -1,5 +1,5 @@
 from lib import FlowJobProblem
-from lib.SigmaJohnson import getSigmaJohnson
+from lib.sequences import getSigmaJohnson
 
 
 class CDS:
@@ -27,6 +27,33 @@ class CDS:
         self.solution = {
             "sequence": optimalSequence,
             "C_max": optimalTime
+        }
+
+        return self.solution
+
+    def getSolutionWithDelay(self):
+        if self.solution:
+            return self.solution
+
+        optimalSequence = getSigmaJohnson(*self.generateTwoVirtualMachines(1))
+        solution = self.problem.generateSolution(optimalSequence)
+        TotalTardiness = self.problem.getTotalTardiness(solution)
+
+        for k in range(2, len(self.problem.jobsMatrix)):
+            johnsonsSequence = getSigmaJohnson(
+                *self.generateTwoVirtualMachines(k)
+            )
+            solution = self.problem.generateSolution(johnsonsSequence)
+            newTotalTardiness = self.problem.getTotalTardiness(solution)
+
+            if newTotalTardiness < TotalTardiness:
+                TotalTardiness = newTotalTardiness
+                optimalSequence = johnsonsSequence
+
+        self.solution = {
+            "sequence": optimalSequence,
+            "C_max": self.problem.getCMax(johnsonsSequence),
+            "TotalTardiness": TotalTardiness
         }
 
         return self.solution
