@@ -22,13 +22,22 @@ python -m venv venv
 
 > Note: if you're on cmd wrap the command in double quotes or use backslashes instead of forward-slashes
 
+- install dependencies:
+
+```sh
+pip install > /requirements.txt
+```
+
 - start the project
 
 ```sh
 python main.py
 ```
 
-enjoy
+## License
+
+MIT
+**Free Software, Enjoy!**
 
 [1.2]: https://img.shields.io/badge/Twitter-@karimGeh?style=flat&logo=Twitter&logoColor=white&color=1D9BF0
 [2.2]: https://img.shields.io/badge/LinkedIn-Karim%20G?style=flat&logo=LinkedIn&logoColor=white&color=0A66C2
