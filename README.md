@@ -31,7 +31,7 @@ pip install > /requirements.txt
 - start the project
 
 ```sh
-python main.py
+python src/main.py
 ```
 
 ## License

@@ -1,5 +1,6 @@
 from lib.CDS import CDS
 from lib.FlowJobProblem import FlowJobProblem
+from lib.sequences import getSequenceWithProperTime
 
 
 Author = """
@@ -50,7 +51,7 @@ problem1 = FlowJobProblem(
     jobsMatrix,
     jobsDelayArray=jobsDelayArray,
     preparationMatrix=preparationMatrix,
-    type="delay"
+    type="delay_and_preparation",
 )
 
 # CDS_solution = CDS(problem1)
@@ -58,5 +59,7 @@ problem1 = FlowJobProblem(
 # print(CDS_solution.getSolution())
 # solution = problem1.generateSolution([3, 2, 1, 0, 4])
 # print(solution)
-print(CDS(problem1).getSolution())
-print(CDS(problem1).getSolutionWithDelay())
+# print(CDS(problem1).getSolution())
+# print(CDS(problem1).getSolutionWithDelay())
+solution = problem1.generateSolution(getSequenceWithProperTime(problem1))
+print(solution)
