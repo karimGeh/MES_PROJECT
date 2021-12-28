@@ -1,7 +1,8 @@
+from typing import List
 from lib import FlowJobProblem
 
 
-def getSigmaJohnson(MachineOne: list[int], MachineTwo: list[int]):
+def getSigmaJohnson(MachineOne: List[int], MachineTwo: List[int]):
     jobs = [[i, j] for i, j in zip(MachineOne, MachineTwo)]
 
     U = [k for k, u in enumerate(jobs) if u[0] <= u[1]]

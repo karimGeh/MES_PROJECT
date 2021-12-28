@@ -2,7 +2,7 @@
 
 ## How to install this project in your machine
 
-for this to work on your machine, you need to have python 3.x installed.
+for this to work on your machine, you need to have python 3.x installed (developed with python 3.8.0).
 
 first clone this repository, then `cd` to the main directory of the project.
 
@@ -25,13 +25,13 @@ python -m venv venv
 - install dependencies:
 
 ```sh
-pip install > /requirements.txt
+pip install > ./requirements.txt
 ```
 
 - start the project
 
 ```sh
-python src/main.py
+python src/index.py
 ```
 
 ## License
