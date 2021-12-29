@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtGui, QtWidgets
 
 # !
 from utils.InnerWidget import InnerWidget
@@ -6,8 +6,10 @@ from utils.InnerWidget import InnerWidget
 # ! widgets
 from client.WelcomeScreen import WelcomeScreen
 from client.DefineProblem import DefineProblem
+from client.ShowSolution import ShowSolution
 
 
+# class App(QtWidgets.QStackedWidget):
 class App(QtWidgets.QStackedWidget):
     def __init__(self) -> None:
         super(App, self).__init__()
@@ -15,6 +17,7 @@ class App(QtWidgets.QStackedWidget):
         self.pages = {
             "welcomeScreen": InnerWidget(self, WelcomeScreen),
             "defineProblem": InnerWidget(self, DefineProblem),
+            "showSolution": InnerWidget(self, ShowSolution),
         }
 
         for value in self.pages.values():

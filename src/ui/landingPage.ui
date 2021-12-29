@@ -30,7 +30,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#widget{
-background:white;
+background:#ffffff;
 }</string>
   </property>
   <widget class="QLabel" name="label">
@@ -62,7 +62,7 @@ background:white;
     </rect>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#20518a;&quot;&gt;Welcome to&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#20518a;&quot;&gt;The Flow Job Optimization Program&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#20518a;&quot;&gt;Welcome to&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#20518a;&quot;&gt;The Flow Job Optimization Software&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QPushButton" name="startButton">
@@ -85,6 +85,22 @@ background:white;
    </property>
    <property name="text">
     <string>START</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>670</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:rgba(0, 0, 0, 50);</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Developed by &lt;a href=&quot;https://www.linkedin.com/in/karim-gehad/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#000000;&quot;&gt;Karim Gehad&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>
